@@ -3,8 +3,8 @@
 ## Installation
 
     git clone https://github.com/kevingrant/.vim.git ~/.vim
-    rm ~/.vimrc && ls -s ~/.vim/vimrc ~/.vimrc
-    rm ~/.gvimrc && ls -s ~/.vim/gvimrc ~/.gvimrc
+    ln -s ~/.vim/vimrc ~/.vimrc
+    ln -s ~/.vim/gvimrc ~/.gvimrc
     cd ~/.vim
     git submodule init
     git submodule update
