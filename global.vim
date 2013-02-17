@@ -97,6 +97,9 @@ noremap <C-v> "+gP
 cmap <C-v> <C-r>+
 exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 
+" Visual bloCk mode
+nnoremap C <C-v>
+
 " Undo/Redo
 noremap <C-z> u
 noremap <C-y> <C-r>
