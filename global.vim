@@ -49,6 +49,8 @@ set shiftround
 set expandtab
 set cindent
 
+au BufRead,BufNewFile *.go set noexpandtab
+
 set wrap         " wrap long lines
 set linebreak    " wrap lines at word boundaries
 set textwidth=80
@@ -99,6 +101,9 @@ exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 
 " Visual bloCk mode
 nnoremap C <C-v>
+
+" Toggle case
+nnoremap U ~
 
 " Undo/Redo
 noremap <C-z> u
