@@ -81,7 +81,17 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 nnoremap <Space> :noh<CR>
 
 " Quick buffer selection
-nnoremap <leader>b :ls<CR>:b<Space>
+" nnoremap <leader>b :ls<CR>:b<Space>
+
+" Quick save/quit
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :qa<CR>
+
+" Save with sudo permissions
+cnoremap w!! w !sudo tee % > /dev/null
+
+" Back to normal mode
+imap kk <Esc>
 
 " Very magic regex search
 nnoremap / /\v
@@ -90,8 +100,8 @@ vnoremap / /\v
 nnoremap <Return> o<Esc>
 
 " Delete a line without overwriting the yanked text
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+" nnoremap <leader>d "_d
+" vnoremap <leader>d "_d
 
 " Copy/paste to system clipboard
 vnoremap <C-c> "+y
@@ -104,6 +114,14 @@ nnoremap C <C-v>
 
 " Toggle case
 nnoremap U ~
+xnoremap U ~
+
+" Dot to pointer
+nnoremap <leader>p s-><Esc>
+nnoremap <leader>P 2s.<Esc>
+
+" Insert block braces
+inoremap {{ {<CR>}<Esc>O
 
 " Undo/Redo
 noremap <C-z> u
