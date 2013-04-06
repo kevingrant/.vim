@@ -112,10 +112,6 @@ exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 " Visual bloCk mode
 nnoremap C <C-v>
 
-" Toggle case
-nnoremap U ~
-xnoremap U ~
-
 " Dot to pointer
 nnoremap <leader>p s-><Esc>
 nnoremap <leader>P 2s.<Esc>
