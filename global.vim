@@ -58,7 +58,6 @@ set textwidth=80
 set formatoptions=c1
 set colorcolumn=81
 set nolist
-set listchars=trail:-
 
 set ignorecase
 set smartcase
