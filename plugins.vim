@@ -55,6 +55,9 @@ nmap ds <Plug>Dsurround
 nmap ts <Plug>Csurround
 xmap S <Plug>VSurround
 
+" syntastic
+let g:syntastic_python_flake8_args='--ignore=E111'
+
 " Tagbar
 let g:tagbar_compact = 1
 nnoremap <silent> <Leader>t :TagbarOpen fj<CR>
