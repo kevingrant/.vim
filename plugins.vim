@@ -4,7 +4,7 @@ let g:alternateExtensions_cpp = "inl,inc,h,hpp"
 let g:alternateExtensions_inl = "h,hpp,c,cpp"
 let g:alternateExtensions_inc = "h,hpp,c,cpp"
 let g:alternateNoDefaultAlternate = 1
-let g:alternateSearchPath = 
+let g:alternateSearchPath =
     \ 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:..,sfr:src'
 
 " indent-object
@@ -19,19 +19,17 @@ vmap iM <Plug>viI_IndentObject
 
 " Ctrl-P
 nnoremap <silent> <C-b> :CtrlPBuffer<CR>
-nnoremap <silent> <C-o> :CtrlPMRUFiles<CR>
 let g:ctrlp_by_filename = 1
-let g:ctrlp_regexp = 1
+let g:ctrlp_regexp = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_files = 0
-let g:ctrlp_working_path_mode = 2
+let g:ctrlp_working_path_mode = 'rwc'
 let g:ctrlp_root_markers = ['.p4config']
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|art$\|bin$\|
-               \build$\|coverage$\|development_temp_files$\|
-               \docs$\|playable$\|sdks$\|tools$',
-    \ 'file': '\.exe$\|\.so$\|\.dll$|\.a$|.png$' }
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll|a|png)$',
+    \ }
 let g:ctrlp_prompt_mappings = {
     \ 'PrtClear()':           ['<c-c>'],
     \ 'PrtSelectMove("j")':   ['<c-e>', '<down>'],
@@ -46,9 +44,6 @@ let g:ctrlp_prompt_mappings = {
 " NERD Commenter
 let g:NERDSpaceDelims = 1
 
-" SuperTab
-let g:SuperTabDefaultCompletionType = "context"
-
 " surround
 let g:surround_no_mappings = 1
 nmap ds <Plug>Dsurround
@@ -57,8 +52,15 @@ xmap S <Plug>VSurround
 
 " syntastic
 let g:syntastic_python_flake8_args='--ignore=E111'
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_loc_list_height=5
+let g:syntastic_mode_map = { 'mode': 'active',
+                            \ 'active_filetypes': [],
+                            \ 'passive_filetypes': [] }
 
-" Tagbar
-let g:tagbar_compact = 1
-nnoremap <silent> <Leader>t :TagbarOpen fj<CR>
-
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"

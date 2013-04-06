@@ -27,6 +27,7 @@ set statusline+=%*
 set statusline+=%#warningmsg#
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 set statusline+=%{StatuslineLongLineWarning()}
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%=     " right align
 set statusline+=%c,    " cursor column
@@ -75,17 +76,18 @@ set wildmode=full
 let mapleader = ","
 
 " Source vimrc
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Clear search highlight
 nnoremap <Space> :noh<CR>
 
-" Quick buffer selection
-" nnoremap <leader>b :ls<CR>:b<Space>
-
 " Quick save/quit
-nnoremap <leader>w :w<CR>
+nnoremap <leader>, :w<CR>
 nnoremap <leader>q :qa<CR>
+
+" Paste word without replacing unnamed register
+nnoremap E "_diwP
+vnoremap E "_dP
 
 " Save with sudo permissions
 cnoremap w!! w !sudo tee % > /dev/null
@@ -97,6 +99,7 @@ imap kk <Esc>
 nnoremap / /\v
 vnoremap / /\v
 
+" Insert newline without leaving normal mode
 nnoremap <Return> o<Esc>
 
 " Delete a line without overwriting the yanked text
@@ -108,6 +111,9 @@ vnoremap <C-c> "+y
 noremap <C-v> "+gP
 cmap <C-v> <C-r>+
 exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+
+" Toggle paste mode
+set pastetoggle=<F9>
 
 " Visual bloCk mode
 nnoremap C <C-v>
@@ -124,6 +130,13 @@ noremap <C-z> u
 noremap <C-y> <C-r>
 inoremap <C-z> <C-o>u
 inoremap <C-y> <C-o><C-r>
+
+highlight TrailingWhitespace ctermbg=red guibg=red
+match TrailingWhitespace /\s\+$/
+autocmd BufWinEnter * match TrailingWhitespace /\s\+$/
+autocmd InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match TrailingWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
@@ -180,4 +193,3 @@ function! s:LongLines()
         \ 'len(substitute(v:val, "\\t", spaces, "g"))')
     return filter(line_lens, 'v:val > threshold')
 endfunction
-

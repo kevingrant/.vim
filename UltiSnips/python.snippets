@@ -1,0 +1,18 @@
+snippet cl "cl"
+class ${1:ClassName}(${2:object}):
+  """${3:docstring for $1}"""
+
+  def __init__(self, ${4:arg}):
+    ${5:super($1, self).__init__()}
+    self.$4 = $4
+    ${6}
+endsnippet
+
+snippet . "."
+self.
+endsnippet
+
+snippet ifmain "ifmain" b
+if __name__ == '__main__':
+  ${1:main()}$0
+endsnippet
