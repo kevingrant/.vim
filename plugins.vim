@@ -7,6 +7,9 @@ let g:alternateNoDefaultAlternate = 1
 let g:alternateSearchPath =
     \ 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:..,sfr:src'
 
+" ack.vim
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 " indent-object
 omap am <Plug>ai_IndentObject
 omap im <Plug>ii_IndentObject
