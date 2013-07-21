@@ -18,26 +18,6 @@ set autoread
 set autowrite
 set hidden
 
-set statusline=
-set statusline+=%t     " tail of filename
-set statusline+=%#identifier#
-set statusline+=%r     " read only flag
-set statusline+=%m     " modified flag
-set statusline+=%*
-set statusline+=%#warningmsg#
-set statusline+=%{StatuslineTrailingSpaceWarning()}
-set statusline+=%{StatuslineLongLineWarning()}
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%=     " right align
-set statusline+=%c,    " cursor column
-set statusline+=%l/%L  " cursor line/total lines
-set laststatus=2       " always display status line
-
-" recalculate when idle and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-
 set scrolloff=3
 set noshowcmd
 set number
@@ -55,11 +35,9 @@ set linebreak    " wrap lines at word boundaries
 set textwidth=80
 set formatoptions=c1
 set colorcolumn=81
-set nolist
 set completeopt-=preview
-
-au FileType go setlocal noexpandtab
-au FileType go setlocal textwidth=0
+set list
+set list listchars=tab:»·
 
 set ignorecase
 set smartcase
@@ -118,6 +96,10 @@ exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 
 " Toggle paste mode
 set pastetoggle=<F9>
+augroup paste
+  autocmd!
+  autocmd InsertLeave * set nopaste
+augroup END
 
 " Visual bloCk mode
 nnoremap C <C-v>
@@ -135,14 +117,17 @@ noremap <C-y> <C-r>
 inoremap <C-z> <C-o>u
 inoremap <C-y> <C-o><C-r>
 
-func InsertPythonBreakpoint()
+func! InsertPythonBreakpoint()
   exe "normal! Oimport pdb; pdb.set_trace()\<Esc>^"
 endfun
 
-au FileType python nnoremap <buffer> <leader>k :call InsertPythonBreakpoint()<CR>
-au FileType go nnoremap <buffer> <leader>f :Fmt<CR>
+augroup filetypes
+  au!
+  au FileType python nnoremap <buffer> <leader>k :call InsertPythonBreakpoint()<CR>
+  au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
+augroup END
 
-func DiffSetup()
+func! DiffSetup()
   set nofoldenable foldcolumn=0 number
   wincmd b
   set nofoldenable foldcolumn=0 number
@@ -160,10 +145,36 @@ endif
 
 highlight TrailingWhitespace ctermbg=red guibg=red
 match TrailingWhitespace /\s\+$/
-autocmd BufWinEnter * match TrailingWhitespace /\s\+$/
-autocmd InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match TrailingWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+augroup trailing
+  au!
+  au BufWinEnter * match TrailingWhitespace /\s\+$/
+  au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
+  au InsertLeave * match TrailingWhitespace /\s\+$/
+  au BufWinLeave * call clearmatches()
+augroup END
+
+set statusline=
+set statusline+=%t     " tail of filename
+set statusline+=%#identifier#
+set statusline+=%r     " read only flag
+set statusline+=%m     " modified flag
+set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+set statusline+=%{StatuslineLongLineWarning()}
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%=     " right align
+set statusline+=%c,    " cursor column
+set statusline+=%l/%L  " cursor line/total lines
+set laststatus=2       " always display status line
+
+" recalculate when idle and after saving
+augroup status
+  au!
+  au cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+  au cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
+augroup END
 
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
