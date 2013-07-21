@@ -37,3 +37,6 @@
 [submodule "bundle/ack.vim"]
 	path = bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "/home/kevin/.vim/bundle/vundle"]
+	path = /home/kevin/.vim/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
