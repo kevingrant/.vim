@@ -5,11 +5,6 @@
     git clone https://github.com/kevingrant/.vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
     ln -s ~/.vim/gvimrc ~/.gvimrc
-    cd ~/.vim
-    git submodule init
-    git submodule update
 
-## Updating Submodules
-
-    cd ~/.vim
-    git submodule foreach git pull origin master
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    vim -u bundles.vim +BundleInstall +q
