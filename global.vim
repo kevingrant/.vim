@@ -50,8 +50,6 @@ set shiftround
 set expandtab
 set cindent
 
-au BufRead,BufNewFile *.go set noexpandtab
-
 set wrap         " wrap long lines
 set linebreak    " wrap lines at word boundaries
 set textwidth=80
@@ -59,6 +57,9 @@ set formatoptions=c1
 set colorcolumn=81
 set nolist
 set completeopt-=preview
+
+au BufRead,BufNewFile *.go setlocal noexpandtab
+au BufRead,BufNewFile *.go setlocal textwidth=0
 
 set ignorecase
 set smartcase
