@@ -71,5 +71,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 " YouCompleteMe
 let g:ycm_complete_in_comments = 1
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
+let g:ycm_filetypes_to_completely_ignore = {
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'text' : 1,
+      \}
 nnoremap <leader>f :YcmCompleter GoToDefinition
 nnoremap <leader>l :YcmCompleter GoToDeclaration

@@ -58,8 +58,8 @@ set colorcolumn=81
 set nolist
 set completeopt-=preview
 
-au BufRead,BufNewFile *.go setlocal noexpandtab
-au BufRead,BufNewFile *.go setlocal textwidth=0
+au FileType go setlocal noexpandtab
+au FileType go setlocal textwidth=0
 
 set ignorecase
 set smartcase
@@ -107,6 +107,9 @@ nnoremap <Return> o<Esc>
 " nnoremap <leader>d "_d
 " vnoremap <leader>d "_d
 
+" Find conflict
+nnoremap <leader>x />>>><CR>zz
+
 " Copy/paste to system clipboard
 vnoremap <C-c> "+y
 noremap <C-v> "+gP
@@ -131,6 +134,29 @@ noremap <C-z> u
 noremap <C-y> <C-r>
 inoremap <C-z> <C-o>u
 inoremap <C-y> <C-o><C-r>
+
+func InsertPythonBreakpoint()
+  exe "normal! Oimport pdb; pdb.set_trace()\<Esc>^"
+endfun
+
+au FileType python nnoremap <buffer> <leader>k :call InsertPythonBreakpoint()<CR>
+au FileType go nnoremap <buffer> <leader>f :Fmt<CR>
+
+func DiffSetup()
+  set nofoldenable foldcolumn=0 number
+  wincmd b
+  set nofoldenable foldcolumn=0 number
+  if has("gui_running")
+    let &columns = 180
+    let &lines = 80
+    wincmd =
+    winpos = 0 0
+  endif
+endfun
+
+if &diff
+  autocmd VimEnter * call DiffSetup()
+endif
 
 highlight TrailingWhitespace ctermbg=red guibg=red
 match TrailingWhitespace /\s\+$/
