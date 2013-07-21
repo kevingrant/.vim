@@ -150,7 +150,7 @@ func DiffSetup()
     let &columns = 180
     let &lines = 80
     wincmd =
-    winpos = 0 0
+    winpos 0 0
   endif
 endfun
 
