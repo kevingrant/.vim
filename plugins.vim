@@ -67,3 +67,9 @@ let g:syntastic_mode_map = { 'mode': 'active',
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+
+" YouCompleteMe
+let g:ycm_complete_in_comments = 1
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
+nnoremap <leader>f :YcmCompleter GoToDefinition
+nnoremap <leader>l :YcmCompleter GoToDeclaration
