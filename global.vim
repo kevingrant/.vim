@@ -127,6 +127,9 @@ augroup filetypes
   au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
 augroup END
 
+nnoremap <leader>l :Lint<CR>
+nnoremap <leader>h :Godoc<CR>
+
 func! DiffSetup()
   set nofoldenable foldcolumn=0 number
   wincmd b

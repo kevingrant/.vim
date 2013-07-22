@@ -76,5 +76,4 @@ let g:ycm_filetypes_to_completely_ignore = {
       \ 'markdown' : 1,
       \ 'text' : 1,
       \}
-nnoremap <leader>f :YcmCompleter GoToDefinition
-nnoremap <leader>l :YcmCompleter GoToDeclaration
+nnoremap <leader>g :YcmCompleter GoToDeclaration
