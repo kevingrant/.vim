@@ -6,6 +6,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'a.vim'
+Bundle 'AndrewRadev/linediff.vim'
 Bundle 'kevingrant/argtextobj.vim'
 Bundle 'kevingrant/vim-colemak'
 Bundle 'kevingrant/vim-indent-object'

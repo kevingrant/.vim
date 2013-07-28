@@ -47,6 +47,11 @@ set showmatch
 set hlsearch
 nohlsearch
 
+set spelllang=en_us
+hi SpellBad   cterm=none ctermbg=none ctermfg=DarkRed
+hi SpellLocal cterm=none ctermbg=none ctermfg=DarkRed
+hi SpellRare  cterm=none ctermbg=none ctermfg=DarkRed
+
 set wildchar=<Tab>
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,*.a
 set wildmenu
@@ -57,12 +62,22 @@ let mapleader = ","
 " Source vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
+" Toggle spell check
+nnoremap <leader>sp :setlocal spell!<CR>
+
 " Clear search highlight
 nnoremap <Space> :noh<CR>
 
 " Quick save/quit
 nnoremap <leader>, :w<CR>
 nnoremap <leader>q :qa<CR>
+
+" Format paragraph
+nnoremap Q gqap
+vnoremap Q gq
+
+" Uppercase word after typing it in insert mode
+imap <C-u> <Esc>viwUea
 
 " Paste word without replacing unnamed register
 nnoremap E "_diwP

@@ -20,6 +20,9 @@ omap iM <Plug>iI_IndentObject
 vmap aM <Plug>vaI_IndentObject
 vmap iM <Plug>viI_IndentObject
 
+" linediff.vim
+vnoremap <leader>d :Linediff<CR>
+
 " Ctrl-P
 nnoremap <silent> <C-b> :CtrlPBuffer<CR>
 let g:ctrlp_by_filename = 1
