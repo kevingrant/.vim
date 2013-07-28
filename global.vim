@@ -140,6 +140,11 @@ augroup filetypes
   au!
   au FileType python nnoremap <buffer> <leader>k :call InsertPythonBreakpoint()<CR>
   au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
+  au FileType go setlocal noexpandtab textwidth=0
+  " Set 'formatoptions' to not auto insert the comment leader after 'o' or 'O',
+  " and to remove comment leader when joining lines.
+  au FileType go setlocal formatoptions-=o formatoptions+=j
+  au FileType c setlocal formatoptions-=o formatoptions+=j
 augroup END
 
 nnoremap <leader>l :Lint<CR>
