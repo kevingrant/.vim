@@ -72,16 +72,15 @@ nnoremap <Space> :noh<CR>
 nnoremap <leader>, :w<CR>
 nnoremap <leader>q :qa<CR>
 
+" Delete buffer
+nnoremap <leader>b :bd<CR>
+
 " Format paragraph
 nnoremap Q gqap
 vnoremap Q gq
 
 " Uppercase word after typing it in insert mode
 imap <C-u> <Esc>viwUea
-
-" Paste word without replacing unnamed register
-nnoremap E "_diwP
-vnoremap E "_dP
 
 " Save with sudo permissions
 cnoremap w!! w !sudo tee % > /dev/null
@@ -95,10 +94,6 @@ vnoremap / /\v
 
 " Insert newline without leaving normal mode
 nnoremap <Return> o<Esc>
-
-" Delete a line without overwriting the yanked text
-" nnoremap <leader>d "_d
-" vnoremap <leader>d "_d
 
 " Find conflict
 nnoremap <leader>x />>>><CR>zz
@@ -129,8 +124,7 @@ inoremap {{ {<CR>}<Esc>O
 " Undo/Redo
 noremap <C-z> u
 noremap <C-y> <C-r>
-inoremap <C-z> <C-o>u
-inoremap <C-y> <C-o><C-r>
+inoremap <C-z> <C-o>u<Esc>
 
 func! InsertPythonBreakpoint()
   exe "normal! Oimport pdb; pdb.set_trace()\<Esc>^"
@@ -139,16 +133,18 @@ endfun
 augroup filetypes
   au!
   au FileType python nnoremap <buffer> <leader>k :call InsertPythonBreakpoint()<CR>
-  au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
+  " Do not auto insert the comment leader after 'o' or 'O',
+  " and remove comment leader when joining lines.
+  au FileType c,cpp,go setlocal formatoptions-=o formatoptions+=qrj
+  " Do not auto-wrap comments using textwidth.
+  au FileType go setlocal formatoptions-=c
   au FileType go setlocal noexpandtab textwidth=0
-  " Set 'formatoptions' to not auto insert the comment leader after 'o' or 'O',
-  " and to remove comment leader when joining lines.
-  au FileType go setlocal formatoptions-=o formatoptions+=j
-  au FileType c setlocal formatoptions-=o formatoptions+=j
+  au FileType go nnoremap <buffer> <leader>h :Godoc<CR>
+  au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
+  au BufWritePre *.go Fmt
 augroup END
 
 nnoremap <leader>l :Lint<CR>
-nnoremap <leader>h :Godoc<CR>
 
 func! DiffSetup()
   set nofoldenable foldcolumn=0 number

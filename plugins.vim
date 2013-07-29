@@ -71,6 +71,20 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
+" YankRing
+let g:yankring_min_element_length = 2
+let g:yankring_persist = 0
+let g:yankring_share_between_instances = 0
+let g:yankring_clipboard_monitor = 0
+let g:yankring_n_keys = 'D'
+let g:yankring_v_key = 'c'
+let g:yankring_replace_n_nkey = '<C-i>'
+let g:yankring_replace_n_pkey = '<C-n>'
+nnoremap <silent> ,y :YRShow<CR>
+function! YRRunAfterMaps()
+  nnoremap <silent> cc :<C-U>YRYankCount 'Y'<CR>
+endfunction
+
 " YouCompleteMe
 let g:ycm_complete_in_comments = 1
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
