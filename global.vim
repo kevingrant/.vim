@@ -72,6 +72,9 @@ nnoremap <Space> :noh<CR>
 nnoremap <leader>, :w<CR>
 nnoremap <leader>q :qa<CR>
 
+" Save with sudo permissions
+cnoremap w!! w !sudo tee % > /dev/null
+
 " Delete buffer without closing window
 nnoremap <leader>b :bp\|bd #<CR>
 
@@ -82,10 +85,7 @@ vnoremap Q gq
 " Uppercase word after typing it in insert mode
 imap <C-u> <Esc>viwUea
 
-" Save with sudo permissions
-cnoremap w!! w !sudo tee % > /dev/null
-
-" Back to normal mode
+" Exit insert mode
 imap kk <Esc>
 
 " Very magic regex search

@@ -50,12 +50,6 @@ let g:ctrlp_prompt_mappings = {
 " NERD Commenter
 let g:NERDSpaceDelims = 1
 
-" surround
-let g:surround_no_mappings = 1
-nmap ds <Plug>Dsurround
-nmap ts <Plug>Csurround
-xmap S <Plug>VSurround
-
 " syntastic
 let g:syntastic_python_flake8_args='--ignore=E111'
 let g:syntastic_error_symbol='✗'

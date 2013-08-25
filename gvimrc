@@ -1,3 +1,4 @@
+" Remove menus, scrollbar, toolbars
 set guioptions-=m
 set guioptions-=l
 set guioptions-=L
