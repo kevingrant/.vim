@@ -132,7 +132,8 @@ endfun
 
 augroup filetypes
   au!
-  au FileType python nnoremap <buffer> <leader>k :call InsertPythonBreakpoint()<CR>
+  au FileType python nnoremap <buffer> <leader>k
+    \ :call InsertPythonBreakpoint()<CR>
   " Do not auto insert the comment leader after 'o' or 'O',
   " and remove comment leader when joining lines.
   au FileType c,cpp,go setlocal formatoptions-=o formatoptions+=qrj
@@ -150,12 +151,6 @@ func! DiffSetup()
   set nofoldenable foldcolumn=0 number
   wincmd b
   set nofoldenable foldcolumn=0 number
-  if has("gui_running")
-    let &columns = 180
-    let &lines = 80
-    wincmd =
-    winpos 0 0
-  endif
 endfun
 
 if &diff
