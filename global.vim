@@ -72,8 +72,8 @@ nnoremap <Space> :noh<CR>
 nnoremap <leader>, :w<CR>
 nnoremap <leader>q :qa<CR>
 
-" Delete buffer
-nnoremap <leader>b :bd<CR>
+" Delete buffer without closing window
+nnoremap <leader>b :bp\|bd #<CR>
 
 " Format paragraph
 nnoremap Q gqap

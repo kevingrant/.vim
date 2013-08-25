@@ -8,7 +8,7 @@ let g:alternateSearchPath =
     \ 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:..,sfr:src'
 
 " ack.vim
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " indent-object
 omap am <Plug>ai_IndentObject
@@ -63,13 +63,12 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_loc_list_height=5
 let g:syntastic_mode_map = { 'mode': 'active',
-                            \ 'active_filetypes': [],
-                            \ 'passive_filetypes': [] }
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': [] }
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
 " YankRing
 let g:yankring_min_element_length = 2
@@ -80,8 +79,8 @@ let g:yankring_o_keys  = 'w W e E d h j k l H M L y G ^ 0 $ , ;'
 let g:yankring_o_keys .= ' g_  g^ gm g$ gk gj gg ge gE - + _ '
 let g:yankring_o_keys .= ' iw iW aw aW as is ap ip a] a[ i] i[ a) a( ab i) i( ib a> a< i> i< at it a} a{ aB i} i{ iB a" a'' a` i" i'' i`'
 let g:yankring_v_key = 'c'
-let g:yankring_replace_n_nkey = '<C-i>'
-let g:yankring_replace_n_pkey = '<C-n>'
+let g:yankring_replace_n_nkey = '<S-Tab>'
+let g:yankring_replace_n_pkey = '<Tab>'
 nnoremap <silent> ,y :YRShow<CR>
 function! YRRunAfterMaps()
   nnoremap <silent> cc :<C-U>YRYankCount 'Y'<CR>
