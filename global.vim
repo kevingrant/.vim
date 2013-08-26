@@ -157,6 +157,8 @@ if &diff
   autocmd VimEnter * call DiffSetup()
 endif
 
+autocmd VimResized * wincmd =
+
 highlight TrailingWhitespace ctermbg=red guibg=red
 match TrailingWhitespace /\s\+$/
 augroup trailing
