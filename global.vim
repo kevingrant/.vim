@@ -148,10 +148,11 @@ augroup END
 
 func! LintErrors()
   execute 'Lint'
+  botright cwindow
   cc
 endfun
 
-nnoremap <leader>l :call LintErrors<CR>
+nnoremap <leader>l :call LintErrors()<CR>
 nnoremap <C-l> :cn<CR>
 
 func! DiffSetup()
