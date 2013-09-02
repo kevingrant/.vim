@@ -143,9 +143,16 @@ augroup filetypes
   au FileType go nnoremap <buffer> <leader>h :Godoc<CR>
   au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
   au BufWritePre *.go Fmt
+  au BufReadPost quickfix setlocal cursorline
 augroup END
 
-nnoremap <leader>l :Lint<CR>
+func! LintErrors()
+  execute 'Lint'
+  cc
+endfun
+
+nnoremap <leader>l :call LintErrors<CR>
+nnoremap <C-l> :cn<CR>
 
 func! DiffSetup()
   set nofoldenable foldcolumn=0 number

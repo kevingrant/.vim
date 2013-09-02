@@ -8,7 +8,7 @@ let g:alternateSearchPath =
     \ 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:..,sfr:src'
 
 " ack.vim
-" let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " indent-object
 omap am <Plug>ai_IndentObject
@@ -49,6 +49,9 @@ let g:ctrlp_prompt_mappings = {
 
 " NERD Commenter
 let g:NERDSpaceDelims = 1
+let g:NERDCustomDelimiters = {
+    \ 'proto_textfmt': { 'left': '#' },
+    \ }
 
 " syntastic
 let g:syntastic_python_flake8_args='--ignore=E111'
@@ -63,6 +66,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
 " YankRing
 let g:yankring_min_element_length = 2
@@ -73,8 +77,8 @@ let g:yankring_o_keys  = 'w W e E d h j k l H M L y G ^ 0 $ , ;'
 let g:yankring_o_keys .= ' g_  g^ gm g$ gk gj gg ge gE - + _ '
 let g:yankring_o_keys .= ' iw iW aw aW as is ap ip a] a[ i] i[ a) a( ab i) i( ib a> a< i> i< at it a} a{ aB i} i{ iB a" a'' a` i" i'' i`'
 let g:yankring_v_key = 'c'
-let g:yankring_replace_n_nkey = '<S-Tab>'
-let g:yankring_replace_n_pkey = '<Tab>'
+let g:yankring_replace_n_nkey = '<S-BS>'
+let g:yankring_replace_n_pkey = '<BS>'
 nnoremap <silent> ,y :YRShow<CR>
 function! YRRunAfterMaps()
   nnoremap <silent> cc :<C-U>YRYankCount 'Y'<CR>
@@ -88,4 +92,4 @@ let g:ycm_filetypes_to_completely_ignore = {
       \ 'markdown' : 1,
       \ 'text' : 1,
       \}
-nnoremap <leader>g :YcmCompleter GoToDeclaration
+nnoremap <leader>g :YcmCompleter GoToDeclaration<CR>
