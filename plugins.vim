@@ -71,8 +71,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 " yankstack
 let g:yankstack_yank_keys = ['cc', 'c', 'C', 'd', 'D', 's', 'S', 'x', 'X', 'tt', 't', 'T']
 let g:yankstack_map_keys = 0
-nmap <Tab> <Plug>yankstack_substitute_older_paste
-nmap <S-Tab> <Plug>yankstack_substitute_newer_paste
 nmap <c-k> <Plug>yankstack_substitute_older_paste
 nmap <c-j> <Plug>yankstack_substitute_newer_paste
 
