@@ -68,21 +68,13 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
-" YankRing
-let g:yankring_min_element_length = 2
-let g:yankring_persist = 0
-let g:yankring_share_between_instances = 0
-let g:yankring_clipboard_monitor = 0
-let g:yankring_o_keys  = 'w W e E d h j k l H M L y G ^ 0 $ , ;'
-let g:yankring_o_keys .= ' g_  g^ gm g$ gk gj gg ge gE - + _ '
-let g:yankring_o_keys .= ' iw iW aw aW as is ap ip a] a[ i] i[ a) a( ab i) i( ib a> a< i> i< at it a} a{ aB i} i{ iB a" a'' a` i" i'' i`'
-let g:yankring_v_key = 'c'
-let g:yankring_replace_n_nkey = '<S-BS>'
-let g:yankring_replace_n_pkey = '<BS>'
-nnoremap <silent> ,y :YRShow<CR>
-function! YRRunAfterMaps()
-  nnoremap <silent> cc :<C-U>YRYankCount 'Y'<CR>
-endfunction
+" yankstack
+let g:yankstack_yank_keys = ['cc', 'c', 'C', 'd', 'D', 's', 'S', 'x', 'X', 'tt', 't', 'T']
+let g:yankstack_map_keys = 0
+nmap <Tab> <Plug>yankstack_substitute_older_paste
+nmap <S-Tab> <Plug>yankstack_substitute_newer_paste
+nmap <c-k> <Plug>yankstack_substitute_older_paste
+nmap <c-j> <Plug>yankstack_substitute_newer_paste
 
 " YouCompleteMe
 let g:ycm_complete_in_comments = 1
