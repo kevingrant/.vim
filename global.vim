@@ -85,9 +85,6 @@ vnoremap Q gq
 " Uppercase word after typing it in insert mode
 imap <C-u> <Esc>viwUea
 
-" Exit insert mode
-imap kk <Esc>
-
 " Very magic regex search
 nnoremap / /\v
 vnoremap / /\v
