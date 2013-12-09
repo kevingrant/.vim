@@ -8,7 +8,9 @@ let g:alternateSearchPath =
     \ 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:..,sfr:src'
 
 " ack.vim
-let g:ackprg = 'ag --nogroup --nocolor --column'
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
 
 " indent-object
 omap am <Plug>ai_IndentObject
@@ -46,6 +48,9 @@ let g:ctrlp_prompt_mappings = {
     \ 'CreateNewFile()':      [],
     \ 'PrtExit()':            ['<esc>', '<c-g>'],
     \ }
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s --nocolor -g ""'
+endif
 
 " NERD Commenter
 let g:NERDSpaceDelims = 1
