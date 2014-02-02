@@ -59,6 +59,10 @@ set wildmode=full
 
 let mapleader = ","
 
+" Scroll line
+nnoremap <Up> <C-y>
+nnoremap <Down> <C-e>
+
 " Source vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
