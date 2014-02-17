@@ -10,7 +10,6 @@ set background=dark
 colorscheme molokai
 hi MatchParen cterm=bold ctermbg=none ctermfg=none
 
-set backupdir=~/tmp
 set noswapfile
 set shortmess+=I
 
@@ -28,7 +27,6 @@ set shiftwidth=2
 set softtabstop=2
 set shiftround
 set expandtab
-set cindent
 
 set wrap         " wrap long lines
 set linebreak    " wrap lines at word boundaries
@@ -38,6 +36,7 @@ set colorcolumn=81
 set completeopt-=preview
 set list
 set list listchars=tab:»·
+set laststatus=2 " always display status line
 
 set ignorecase
 set smartcase
@@ -86,9 +85,6 @@ nnoremap <leader>b :bp\|bd #<CR>
 nnoremap Q gqap
 vnoremap Q gq
 
-" Uppercase word after typing it in insert mode
-imap <C-u> <Esc>viwUea
-
 " Very magic regex search
 nnoremap / /\v
 vnoremap / /\v
@@ -103,7 +99,7 @@ nnoremap <leader>x />>>><CR>zz
 vnoremap <C-c> "+y
 noremap <C-v> "+gP
 cmap <C-v> <C-r>+
-exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+inoremap <C-v> <C-o>"+p
 
 " Toggle paste mode
 set pastetoggle=<F9>
@@ -119,9 +115,6 @@ nnoremap C <C-v>
 nnoremap <leader>p s-><Esc>
 nnoremap <leader>P 2s.<Esc>
 
-" Insert block braces
-inoremap {{ {<CR>}<Esc>O
-
 " Undo/Redo
 noremap <C-z> u
 noremap <C-y> <C-r>
@@ -135,15 +128,21 @@ augroup filetypes
   au!
   au FileType python nnoremap <buffer> <leader>k
     \ :call InsertPythonBreakpoint()<CR>
+
+  au FileType c,cpp setlocal cindent
   " Do not auto insert the comment leader after 'o' or 'O',
   " and remove comment leader when joining lines.
   au FileType c,cpp,go setlocal formatoptions-=o formatoptions+=qrj
+  " Insert block braces
+  au FileType c,cpp,go inoremap <buffer> {{ {<CR>}<Esc>O
+
   " Do not auto-wrap comments using textwidth.
   au FileType go setlocal formatoptions-=c
   au FileType go setlocal noexpandtab textwidth=0
   au FileType go nnoremap <buffer> <leader>h :Godoc<CR>
   au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
   au BufWritePre *.go Fmt
+
   au BufReadPost quickfix setlocal cursorline
 augroup END
 
@@ -177,82 +176,3 @@ augroup trailing
   au InsertLeave * match TrailingWhitespace /\s\+$/
   au BufWinLeave * call clearmatches()
 augroup END
-
-set statusline=
-set statusline+=%t     " tail of filename
-set statusline+=%#identifier#
-set statusline+=%r     " read only flag
-set statusline+=%m     " modified flag
-set statusline+=%*
-set statusline+=%#warningmsg#
-set statusline+=%{StatuslineTrailingSpaceWarning()}
-set statusline+=%{StatuslineLongLineWarning()}
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%=     " right align
-set statusline+=%c,    " cursor column
-set statusline+=%l/%L  " cursor line/total lines
-set laststatus=2       " always display status line
-
-" recalculate when idle and after saving
-augroup status
-  au!
-  au cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-  au cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-augroup END
-
-"return '[\s]' if trailing white space is detected
-"return '' otherwise
-function! StatuslineTrailingSpaceWarning()
-    if !exists("b:statusline_trailing_space_warning")
-
-        if !&modifiable
-            let b:statusline_trailing_space_warning = ''
-            return b:statusline_trailing_space_warning
-        endif
-
-        if search('\s\+$', 'nw') != 0
-            let b:statusline_trailing_space_warning = '[\s]'
-        else
-            let b:statusline_trailing_space_warning = ''
-        endif
-    endif
-    return b:statusline_trailing_space_warning
-endfunction
-
-"return a warning for "long lines" where "long" is either &textwidth
-"or 80 (if no &textwidth is set)
-"
-"return '' if no long lines
-"return '[#x,my,$z] if long lines are found, were x is the number of long
-"lines, y is the median length of the long lines and z is the length of the
-"longest line
-function! StatuslineLongLineWarning()
-    if !exists("b:statusline_long_line_warning")
-
-        if !&modifiable
-            let b:statusline_long_line_warning = ''
-            return b:statusline_long_line_warning
-        endif
-
-        let long_line_lens = s:LongLines()
-
-        if len(long_line_lens) > 0
-            let b:statusline_long_line_warning = "[" .
-                        \ '#' . len(long_line_lens) . "," .
-                        \ '$' . max(long_line_lens) . "]"
-        else
-            let b:statusline_long_line_warning = ""
-        endif
-    endif
-    return b:statusline_long_line_warning
-endfunction
-
-"return a list containing the lengths of the long lines in this buffer
-function! s:LongLines()
-    let threshold = (&tw ? &tw : 80)
-    let spaces = repeat(" ", &ts)
-    let line_lens = map(getline(1,'$'),
-        \ 'len(substitute(v:val, "\\t", spaces, "g"))')
-    return filter(line_lens, 'v:val > threshold')
-endfunction

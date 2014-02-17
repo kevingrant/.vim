@@ -12,6 +12,10 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
 
+" airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#ctrlp#show_adjacent_modes = 0
+
 " indent-object
 omap am <Plug>ai_IndentObject
 omap im <Plug>ii_IndentObject
