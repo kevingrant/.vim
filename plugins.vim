@@ -14,6 +14,7 @@ endif
 
 " airline
 let g:airline_powerline_fonts = 1
+let g:airline_theme='badwolf'
 let g:airline#extensions#ctrlp#show_adjacent_modes = 0
 
 " indent-object

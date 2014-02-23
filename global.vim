@@ -54,7 +54,7 @@ hi SpellRare  cterm=none ctermbg=none ctermfg=DarkRed
 set wildchar=<Tab>
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,*.a
 set wildmenu
-set wildmode=full
+set wildmode=longest:full,full
 
 let mapleader = ","
 
