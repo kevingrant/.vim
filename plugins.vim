@@ -86,6 +86,7 @@ nmap <c-k> <Plug>yankstack_substitute_older_paste
 nmap <c-j> <Plug>yankstack_substitute_newer_paste
 
 " YouCompleteMe
+let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 let g:ycm_filetypes_to_completely_ignore = {
