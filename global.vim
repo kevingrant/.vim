@@ -54,7 +54,7 @@ hi SpellRare  cterm=none ctermbg=none ctermfg=DarkRed
 set wildchar=<Tab>
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,*.a
 set wildmenu
-set wildmode=longest:full,full
+set wildmode=full
 
 let mapleader = ","
 
@@ -141,7 +141,7 @@ augroup filetypes
   au FileType go setlocal noexpandtab textwidth=0
   au FileType go nnoremap <buffer> <leader>h :Godoc<CR>
   au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
-  au BufWritePre *.go Fmt
+  au FileType go au BufWritePre <buffer> Fmt
 
   au BufReadPost quickfix setlocal cursorline
 augroup END
