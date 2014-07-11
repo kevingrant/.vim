@@ -14,7 +14,6 @@ set noswapfile
 set shortmess+=I
 
 set autoread
-set autowrite
 set hidden
 
 set scrolloff=3
@@ -74,9 +73,6 @@ nnoremap <Space> :noh<CR>
 " Quick save/quit
 nnoremap <leader>, :w<CR>
 nnoremap <leader>q :qa<CR>
-
-" Save with sudo permissions
-cnoremap w!! w !sudo tee % > /dev/null
 
 " Delete buffer without closing window
 nnoremap <leader>b :bp\|bd #<CR>
