@@ -7,6 +7,7 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 Plugin 'AndrewRadev/linediff.vim'
 Plugin 'bling/vim-airline'
+Plugin 'fatih/vim-go'
 Plugin 'honza/vim-snippets'
 Plugin 'kevingrant/argtextobj.vim'
 Plugin 'kevingrant/vim-colemak'
