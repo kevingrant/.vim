@@ -64,7 +64,8 @@ let g:NERDCustomDelimiters = {
     \ }
 
 " syntastic
-let g:syntastic_python_flake8_args='--ignore=E111'
+" let g:syntastic_python_flake8_args='--ignore=E111'
+let g:syntastic_python_flake8_args='--select=E,W'
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_highlighting = 0
@@ -77,6 +78,9 @@ let g:syntastic_mode_map = { 'mode': 'active',
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+
+" vim-go
+let g:go_fmt_command = "goimports"
 
 " yankstack
 let g:yankstack_yank_nkeys = ['cc', 'c', 'C', 'd', 'D', 's', 'S', 'x', 'X', 'tt', 't', 'T']

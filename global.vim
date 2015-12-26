@@ -133,11 +133,11 @@ augroup filetypes
   au FileType c,cpp,go inoremap <buffer> {{ {<CR>}<Esc>O
 
   " Do not auto-wrap comments using textwidth.
-  au FileType go setlocal formatoptions-=c
-  au FileType go setlocal noexpandtab textwidth=0
-  au FileType go nnoremap <buffer> <leader>h :Godoc<CR>
-  au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
-  au FileType go au BufWritePre <buffer> Fmt
+  " au FileType go setlocal formatoptions-=c
+  " au FileType go setlocal noexpandtab textwidth=0
+  " au FileType go nnoremap <buffer> <leader>h :Godoc<CR>
+  " au FileType go nnoremap <buffer> <leader>f :Fmt<CR>:w<CR>
+  " au FileType go au BufWritePre <buffer> Fmt
 
   au BufReadPost quickfix setlocal cursorline
 augroup END
